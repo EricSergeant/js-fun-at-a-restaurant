@@ -1,5 +1,3 @@
-// var restaurant = {};
-
 function createRestaurant(name) {
   var restaurant = {};
   restaurant.name = name;
@@ -26,10 +24,12 @@ function removeMenuItem(restaurant, deleteObj, typeOfMenu) {
   if (restaurant.menus[typeOfMenu].length === 0) {
     return `Sorry, we don't sell ${deleteObj}, try adding a new recipe!`
   } else {
-    restaurant.menus[typeOfMenu].pop();
-    //was stuck for a long time thinking it should be restaurant.menus.typeOfMenu...need to clarify why array
+    for (var i=0; i<restaurant.menus[typeOfMenu].length; i++) {
+    restaurant.menus[typeOfMenu].splice(i, 1);
+  }
     return `No one is eating our ${deleteObj} - it has been removed from the ${typeOfMenu} menu!`;
 }
+//Note on the above: was stuck thinking it should be restaurant.menus.typeOfMenu however JS recognizes the type string as an array name in this case.
 }
 
 module.exports = {
